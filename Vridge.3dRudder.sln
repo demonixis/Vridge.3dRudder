@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vridge.3dRudder", "Vridge.3dRudder\Vridge.3dRudder.csproj", "{62326722-C429-4332-BB4F-E27EA2E43BD2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VRE.Vridge.API.Client", "VRE.Vridge.API.Client\VRE.Vridge.API.Client.csproj", "{BD1317CC-9724-4DD4-BBE4-C786F6E1C826}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ns3dRudderSharp", "ns3dRudderSharp\ns3dRudderSharp.csproj", "{1D4350E6-C63E-4FF4-A9AF-C47FB43DF455}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62326722-C429-4332-BB4F-E27EA2E43BD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62326722-C429-4332-BB4F-E27EA2E43BD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62326722-C429-4332-BB4F-E27EA2E43BD2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{62326722-C429-4332-BB4F-E27EA2E43BD2}.Debug|x86.Build.0 = Debug|Any CPU
+		{62326722-C429-4332-BB4F-E27EA2E43BD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62326722-C429-4332-BB4F-E27EA2E43BD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62326722-C429-4332-BB4F-E27EA2E43BD2}.Release|x86.ActiveCfg = Release|Any CPU
+		{62326722-C429-4332-BB4F-E27EA2E43BD2}.Release|x86.Build.0 = Release|Any CPU
+		{BD1317CC-9724-4DD4-BBE4-C786F6E1C826}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD1317CC-9724-4DD4-BBE4-C786F6E1C826}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD1317CC-9724-4DD4-BBE4-C786F6E1C826}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BD1317CC-9724-4DD4-BBE4-C786F6E1C826}.Debug|x86.Build.0 = Debug|Any CPU
+		{BD1317CC-9724-4DD4-BBE4-C786F6E1C826}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD1317CC-9724-4DD4-BBE4-C786F6E1C826}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD1317CC-9724-4DD4-BBE4-C786F6E1C826}.Release|x86.ActiveCfg = Release|Any CPU
+		{BD1317CC-9724-4DD4-BBE4-C786F6E1C826}.Release|x86.Build.0 = Release|Any CPU
+		{1D4350E6-C63E-4FF4-A9AF-C47FB43DF455}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{1D4350E6-C63E-4FF4-A9AF-C47FB43DF455}.Debug|x86.ActiveCfg = Debug|x86
+		{1D4350E6-C63E-4FF4-A9AF-C47FB43DF455}.Debug|x86.Build.0 = Debug|x86
+		{1D4350E6-C63E-4FF4-A9AF-C47FB43DF455}.Release|Any CPU.ActiveCfg = Release|x86
+		{1D4350E6-C63E-4FF4-A9AF-C47FB43DF455}.Release|x86.ActiveCfg = Release|x86
+		{1D4350E6-C63E-4FF4-A9AF-C47FB43DF455}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5FA875CD-2BC0-4311-B6B2-CEACE81D56A7}
+	EndGlobalSection
+EndGlobal
