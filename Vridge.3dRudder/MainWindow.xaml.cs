@@ -1,4 +1,4 @@
-﻿using ns3dRudderSharp;
+﻿using ns3dRudder;
 using System;
 using System.Threading;
 using System.Windows;
@@ -11,9 +11,17 @@ namespace Vridge._3dRudder
     /// </summary>
     public partial class MainWindow : Window
     {
+        private class AxesParam : IAxesParam
+        {
+        }
+
         private Thread m_Thread;
         private VridgeRemote m_VridgeRemote;
-        private RudderController m_3dRudder;
+        private IAxesParam m_IAxesParam;
+        private AxesValue m_AxesValue;
+        private double X = 0;
+        private double Z = 0;
+
         private bool m_IsRunning;
 
         public bool RudderEnabled { get; set; } = true;
@@ -21,7 +29,8 @@ namespace Vridge._3dRudder
         public MainWindow()
         {
             m_VridgeRemote = new VridgeRemote("localhost", "Vridge.3dRudder", Capabilities.HeadTracking);
-            m_3dRudder = new RudderController();
+            m_IAxesParam = new AxesParamDefault();
+            m_AxesValue = new AxesValue();
 
             InitializeComponent();
 
@@ -32,12 +41,19 @@ namespace Vridge._3dRudder
         {
             Stop();
 
-            m_IsRunning = true;
+            var status = Sdk3dRudder.Init();
 
-            m_Thread = new Thread(new ThreadStart(ThreadLoop));
-            m_Thread.Start();
+            m_IsRunning = status == ErrorCode.Success;
 
-            StatusLabel.Text = "Started";
+            if (m_IsRunning)
+            {
+                m_Thread = new Thread(new ThreadStart(ThreadLoop));
+                m_Thread.Start();
+
+                StatusLabel.Text = "Started";
+            }
+            else
+                StatusLabel.Text = status.ToString();
         }
 
         public void Stop()
@@ -57,35 +73,27 @@ namespace Vridge._3dRudder
 
         private void ThreadLoop()
         {
-            var x = 0.0f;
-            var y = 0.0f;
-            var z = 0.0f;
-            var ry = 0.0f;
-
             while (m_IsRunning)
             {
                 if (RudderEnabled)
                 {
-                    m_3dRudder.GetAxis(ref x, ref y, ref z, ref ry);
-
                     if (m_VridgeRemote.Head != null)
-                        m_VridgeRemote.Head.SetPosition((double)x, 0, (double)z);
+                    {
+                        Sdk3dRudder.GetAxes(0, m_IAxesParam, m_AxesValue);
 
-                    Console.WriteLine($"x: {x}, y: {y}, z: {z}, rY: {ry}");
+                        Z += m_AxesValue.Get(Axes.ForwardBackward);
+                        X += m_AxesValue.Get(Axes.LeftRight);
+
+                        m_VridgeRemote.Head.SetPosition(X, 0, Z);
+                        Console.WriteLine($"x: {X}, z: {Z}");
+                    }
                 }
 
                 Thread.Sleep(10);
             }
         }
 
-        private void OnConnectClicked(object sender, RoutedEventArgs e)
-        {
-            Start();
-        }
-
-        private void OnDisconnectClicked(object sender, RoutedEventArgs e)
-        {
-            Stop();
-        }
+        private void OnConnectClicked(object sender, RoutedEventArgs e) => Start();
+        private void OnDisconnectClicked(object sender, RoutedEventArgs e) => Stop();
     }
 }
