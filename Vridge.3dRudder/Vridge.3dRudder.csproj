@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="3DRudderSDK.net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\3DRudderSDK.net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -95,15 +99,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ns3dRudderSharp\ns3dRudderSharp.csproj">
-      <Project>{1d4350e6-c63e-4ff4-a9af-c47fb43df455}</Project>
-      <Name>ns3dRudderSharp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\VRE.Vridge.API.Client\VRE.Vridge.API.Client.csproj">
       <Project>{bd1317cc-9724-4dd4-bbe4-c786f6e1c826}</Project>
       <Name>VRE.Vridge.API.Client</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="i3DR.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

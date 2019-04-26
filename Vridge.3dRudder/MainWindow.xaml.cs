@@ -11,15 +11,12 @@ namespace Vridge._3dRudder
     /// </summary>
     public partial class MainWindow : Window
     {
-        private class AxesParam : IAxesParam
-        {
-        }
-
         private Thread m_Thread;
         private VridgeRemote m_VridgeRemote;
-        private IAxesParam m_IAxesParam;
+        private AxesParamDefault m_AxesParamDefault;
         private AxesValue m_AxesValue;
         private double X = 0;
+        private double Y = 1.8;
         private double Z = 0;
 
         private bool m_IsRunning;
@@ -29,7 +26,7 @@ namespace Vridge._3dRudder
         public MainWindow()
         {
             m_VridgeRemote = new VridgeRemote("localhost", "Vridge.3dRudder", Capabilities.HeadTracking);
-            m_IAxesParam = new AxesParamDefault();
+            m_AxesParamDefault = new AxesParamDefault();
             m_AxesValue = new AxesValue();
 
             InitializeComponent();
@@ -75,16 +72,17 @@ namespace Vridge._3dRudder
         {
             while (m_IsRunning)
             {
-                if (RudderEnabled)
+                if (RudderEnabled && m_VridgeRemote.Head != null)
                 {
-                    if (m_VridgeRemote.Head != null)
+                    var errorCode = Sdk3dRudder.GetAxes(0, m_AxesParamDefault, m_AxesValue);
+
+                    if (errorCode == ErrorCode.Success)
                     {
-                        Sdk3dRudder.GetAxes(0, m_IAxesParam, m_AxesValue);
-
-                        Z += m_AxesValue.Get(Axes.ForwardBackward);
                         X += m_AxesValue.Get(Axes.LeftRight);
+                        Z += m_AxesValue.Get(Axes.ForwardBackward);
 
-                        m_VridgeRemote.Head.SetPosition(X, 0, Z);
+                        m_VridgeRemote.Head.SetPosition(X, Y, Z);
+
                         Console.WriteLine($"x: {X}, z: {Z}");
                     }
                 }

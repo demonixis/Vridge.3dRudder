@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vridge.3dRudder", "Vridge.3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VRE.Vridge.API.Client", "VRE.Vridge.API.Client\VRE.Vridge.API.Client.csproj", "{BD1317CC-9724-4DD4-BBE4-C786F6E1C826}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ns3dRudderSharp", "ns3dRudderSharp\ns3dRudderSharp.csproj", "{1D4350E6-C63E-4FF4-A9AF-C47FB43DF455}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,12 +31,6 @@ Global
 		{BD1317CC-9724-4DD4-BBE4-C786F6E1C826}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BD1317CC-9724-4DD4-BBE4-C786F6E1C826}.Release|x86.ActiveCfg = Release|Any CPU
 		{BD1317CC-9724-4DD4-BBE4-C786F6E1C826}.Release|x86.Build.0 = Release|Any CPU
-		{1D4350E6-C63E-4FF4-A9AF-C47FB43DF455}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{1D4350E6-C63E-4FF4-A9AF-C47FB43DF455}.Debug|x86.ActiveCfg = Debug|x86
-		{1D4350E6-C63E-4FF4-A9AF-C47FB43DF455}.Debug|x86.Build.0 = Debug|x86
-		{1D4350E6-C63E-4FF4-A9AF-C47FB43DF455}.Release|Any CPU.ActiveCfg = Release|x86
-		{1D4350E6-C63E-4FF4-A9AF-C47FB43DF455}.Release|x86.ActiveCfg = Release|x86
-		{1D4350E6-C63E-4FF4-A9AF-C47FB43DF455}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
