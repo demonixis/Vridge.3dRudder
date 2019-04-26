@@ -22,7 +22,7 @@ namespace ns3dRudderSharp
             }
         }
 
-        private RudderManager()
+        public RudderManager()
         {
             Init();
 

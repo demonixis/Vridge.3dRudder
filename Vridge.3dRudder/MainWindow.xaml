@@ -17,11 +17,11 @@
         </Grid.ColumnDefinitions>
         <CheckBox Grid.Row="0" Content="Enabled" IsChecked="{Binding RudderEnabled}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Button Content="Connect" Width="90" Margin="5"/>
-            <Button Content="Disconnect" Width="90" Margin="5" />
+            <Button Content="Connect" Width="90" Margin="5" Click="OnConnectClicked"/>
+            <Button Content="Disconnect" Width="90" Margin="5" Click="OnDisconnectClicked" />
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Background="LightGray" Margin="0, 5, 0, 0">
-            <TextBlock Text="Not Connected" HorizontalAlignment="Right" Margin="0, 0, 5, 0" />
+            <TextBlock x:Name="StatusLabel" Text="Not Connected" HorizontalAlignment="Right" Margin="0, 0, 5, 0" />
         </StackPanel>
     </Grid>
 </Window>

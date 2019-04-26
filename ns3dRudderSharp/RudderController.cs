@@ -37,7 +37,8 @@ namespace ns3dRudderSharp
 
             try
             {
-                m_Rudder = RudderManager.Instance.GetRudder(0);
+                var manager = new RudderManager();
+                m_Rudder = manager.GetRudder(0);
             }
             catch (Exception ex)
             {

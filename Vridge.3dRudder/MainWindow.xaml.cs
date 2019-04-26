@@ -1,19 +1,7 @@
 ﻿using ns3dRudderSharp;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using VRE.Vridge.API.Client.Remotes;
 
 namespace Vridge._3dRudder
@@ -34,7 +22,6 @@ namespace Vridge._3dRudder
         {
             m_VridgeRemote = new VridgeRemote("localhost", "Vridge.3dRudder", Capabilities.HeadTracking);
             m_3dRudder = new RudderController();
-            m_IsRunning = true;
 
             InitializeComponent();
 
@@ -45,8 +32,12 @@ namespace Vridge._3dRudder
         {
             Stop();
 
+            m_IsRunning = true;
+
             m_Thread = new Thread(new ThreadStart(ThreadLoop));
             m_Thread.Start();
+
+            StatusLabel.Text = "Started";
         }
 
         public void Stop()
@@ -60,6 +51,8 @@ namespace Vridge._3dRudder
 
                 m_Thread = null;
             }
+
+            StatusLabel.Text = "Stopped";
         }
 
         private void ThreadLoop()
@@ -74,11 +67,25 @@ namespace Vridge._3dRudder
                 if (RudderEnabled)
                 {
                     m_3dRudder.GetAxis(ref x, ref y, ref z, ref ry);
-                    m_VridgeRemote.Head.SetPosition((double)x, (double)y, (double)z);
+
+                    if (m_VridgeRemote.Head != null)
+                        m_VridgeRemote.Head.SetPosition((double)x, 0, (double)z);
+
+                    Console.WriteLine($"x: {x}, y: {y}, z: {z}, rY: {ry}");
                 }
 
                 Thread.Sleep(10);
             }
+        }
+
+        private void OnConnectClicked(object sender, RoutedEventArgs e)
+        {
+            Start();
+        }
+
+        private void OnDisconnectClicked(object sender, RoutedEventArgs e)
+        {
+            Stop();
         }
     }
 }
