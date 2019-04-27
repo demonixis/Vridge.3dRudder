@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vridge._3dRudder"
         mc:Ignorable="d"
-        Title="Vridge.3dRudder" Height="130.667" Width="208.8">
+        Title="Vridge.3dRudder" Height="159.467" Width="226.934" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition Height="20" />
@@ -16,11 +17,15 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <CheckBox Grid.Row="0" Content="Enabled" IsChecked="{Binding RudderEnabled}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <TextBlock Text="Move Speed" Margin="5"/>
+            <TextBox Text="{Binding MoveSpeed}" Width="110" Margin="5,5,5,5" />
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Button Content="Connect" Width="90" Margin="5" Click="OnConnectClicked"/>
             <Button Content="Disconnect" Width="90" Margin="5" Click="OnDisconnectClicked" />
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Background="LightGray" Margin="0, 5, 0, 0">
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Background="LightGray" Margin="0, 5, 0, 0">
             <TextBlock x:Name="StatusLabel" Text="Not Connected" HorizontalAlignment="Right" Margin="0, 0, 5, 0" />
         </StackPanel>
     </Grid>

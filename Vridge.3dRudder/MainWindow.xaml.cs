@@ -21,6 +21,7 @@ namespace Vridge._3dRudder
 
         private bool m_IsRunning;
 
+        public float MoveSpeed { get; set; } = 0.25f;
         public bool RudderEnabled { get; set; } = true;
 
         public MainWindow()
@@ -72,18 +73,17 @@ namespace Vridge._3dRudder
         {
             while (m_IsRunning)
             {
-                if (RudderEnabled && m_VridgeRemote.Head != null)
+                if (RudderEnabled)
                 {
                     var errorCode = Sdk3dRudder.GetAxes(0, m_AxesParamDefault, m_AxesValue);
 
                     if (errorCode == ErrorCode.Success)
                     {
-                        X += m_AxesValue.Get(Axes.LeftRight);
-                        Z += m_AxesValue.Get(Axes.ForwardBackward);
+                        X += m_AxesValue.Get(Axes.LeftRight) * MoveSpeed;
+                        Z -= m_AxesValue.Get(Axes.ForwardBackward) * MoveSpeed;
 
-                        m_VridgeRemote.Head.SetPosition(X, Y, Z);
-
-                        Console.WriteLine($"x: {X}, z: {Z}");
+                        if (m_VridgeRemote.Head != null)
+                            m_VridgeRemote.Head.SetPosition(X, Y, Z);
                     }
                 }
 
