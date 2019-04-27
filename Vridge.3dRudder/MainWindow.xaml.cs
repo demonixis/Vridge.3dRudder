@@ -16,13 +16,15 @@ namespace Vridge._3dRudder
         private AxesParamDefault m_AxesParamDefault;
         private AxesValue m_AxesValue;
         private double X = 0;
-        private double Y = 1.8;
+        private double Y = 0;
         private double Z = 0;
 
         private bool m_IsRunning;
-
+        public bool RotationEnabled { get; set; } = false;
         public float MoveSpeed { get; set; } = 0.25f;
+        public float RotationSpeed { get; set; } = 0.25f;
         public bool RudderEnabled { get; set; } = true;
+        public float HeadHeight { get; set; } = 1.8f;
 
         public MainWindow()
         {
@@ -41,7 +43,7 @@ namespace Vridge._3dRudder
 
             var status = Sdk3dRudder.Init();
 
-            m_IsRunning = status == ErrorCode.Success;
+            m_IsRunning = status != ErrorCode.Fail;
 
             if (m_IsRunning)
             {
@@ -80,10 +82,21 @@ namespace Vridge._3dRudder
                     if (errorCode == ErrorCode.Success)
                     {
                         X += m_AxesValue.Get(Axes.LeftRight) * MoveSpeed;
+                        Y = HeadHeight;
                         Z -= m_AxesValue.Get(Axes.ForwardBackward) * MoveSpeed;
 
+                        // TODO: Simulate Crouch using Y
+
                         if (m_VridgeRemote.Head != null)
-                            m_VridgeRemote.Head.SetPosition(X, Y, Z);
+                        {
+                            if (RotationEnabled)
+                            {
+                                var rotationY = m_AxesValue.Get(Axes.Rotation) * MoveSpeed;
+                                m_VridgeRemote.Head.SetRotationAndPosition(rotationY, 0, 0, X, Y, Z);
+                            }
+                            else
+                                m_VridgeRemote.Head.SetPosition(X, Y, Z);
+                        }
                     }
                 }
 

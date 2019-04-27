@@ -5,27 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vridge._3dRudder"
         mc:Ignorable="d"
-        Title="Vridge.3dRudder" Height="159.467" Width="226.934" ResizeMode="NoResize">
+        Title="Vridge.3dRudder" Height="249.333" Width="221.867" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
             <RowDefinition />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <CheckBox Grid.Row="0" Content="Enabled" IsChecked="{Binding RudderEnabled}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
-        <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <TextBlock Text="Move Speed" Margin="5"/>
-            <TextBox Text="{Binding MoveSpeed}" Width="110" Margin="5,5,5,5" />
+
+        <StackPanel Orientation="Vertical" Grid.Row="0" Margin="5">
+            <TextBlock Text="Settings" FontWeight="DemiBold" />
+            <CheckBox Content="Enabled" IsChecked="{Binding RudderEnabled}" VerticalAlignment="Center" Margin="5, 2, 5, 2" />
+            <CheckBox Content="Rotation" IsChecked="{Binding RotationEnabled}" VerticalAlignment="Center" Margin="5, 2, 5, 2" />
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="80" Text="Head Height" Margin="5"/>
+                <TextBox Text="{Binding HeadHeight}" Width="100" Margin="5,5,0,5" />
+            </StackPanel>
+            <TextBlock Text="Movement" FontWeight="DemiBold" Margin="0, 5, 0, 0" />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="80" Text="Move Speed" Margin="5"/>
+                <TextBox Text="{Binding MoveSpeed}" Width="100" Margin="5,5,0,5" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="80" Text="Rotation Speed" Margin="5"/>
+                <TextBox Text="{Binding RotationSpeed}" Width="100" Margin="5,5,0,5" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Connect" Width="90" Margin="5" Click="OnConnectClicked"/>
+                <Button Content="Disconnect" Width="90" Margin="5" Click="OnDisconnectClicked" />
+            </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button Content="Connect" Width="90" Margin="5" Click="OnConnectClicked"/>
-            <Button Content="Disconnect" Width="90" Margin="5" Click="OnDisconnectClicked" />
-        </StackPanel>
-        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Background="LightGray" Margin="0, 5, 0, 0">
+
+        <StackPanel Grid.Row="1" Background="LightGray" Margin="0, 5, 0, 0">
             <TextBlock x:Name="StatusLabel" Text="Not Connected" HorizontalAlignment="Right" Margin="0, 0, 5, 0" />
         </StackPanel>
     </Grid>
