@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vridge._3dRudder"
         mc:Ignorable="d"
-        Title="Vridge.3dRudder" Height="249.333" Width="221.867" ResizeMode="NoResize">
+        Title="Vridge.3dRudder" Height="306.4" Width="223.067" ResizeMode="NoResize" Closed="Window_Closed">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -17,22 +17,24 @@
 
         <StackPanel Orientation="Vertical" Grid.Row="0" Margin="5">
             <TextBlock Text="Settings" FontWeight="DemiBold" />
-            <CheckBox Content="Enabled" IsChecked="{Binding RudderEnabled}" VerticalAlignment="Center" Margin="5, 2, 5, 2" />
-            <CheckBox Content="Rotation" IsChecked="{Binding RotationEnabled}" VerticalAlignment="Center" Margin="5, 2, 5, 2" />
+            <CheckBox x:Name="RudderEnabled" Click="RudderEnabled_Click" Content="Enabled" IsChecked="True" VerticalAlignment="Center" Margin="5, 2, 5, 2" />
+            <CheckBox x:Name="RotationEnabled" Click="RotationEnabled_Click" Content="Rotation" IsChecked="False" VerticalAlignment="Center" Margin="5, 2, 5, 2" />
+            <CheckBox x:Name="SimulateCrouch" Click="SimulateCrouch_Click" Content="Simulate Crouch" IsChecked="True" VerticalAlignment="Center" Margin="5, 2, 5, 2" />
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Width="80" Text="Head Height" Margin="5"/>
-                <TextBox Text="{Binding HeadHeight}" Width="100" Margin="5,5,0,5" />
+                <TextBox x:Name="HeadHeight" Text="1.8" Width="100" Margin="5,5,0,5" TextChanged="HeadHeight_TextChanged" />
             </StackPanel>
             <TextBlock Text="Movement" FontWeight="DemiBold" Margin="0, 5, 0, 0" />
             <StackPanel Orientation="Horizontal">
                 <TextBlock Width="80" Text="Move Speed" Margin="5"/>
-                <TextBox Text="{Binding MoveSpeed}" Width="100" Margin="5,5,0,5" />
+                <TextBox x:Name="MoveSpeed" Text="0.25" Width="100" Margin="5,5,0,5" TextChanged="MoveSpeed_TextChanged" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Width="80" Text="Rotation Speed" Margin="5"/>
-                <TextBox Text="{Binding RotationSpeed}" Width="100" Margin="5,5,0,5" />
+                <TextBox x:Name="RotationSpeed" Text="0.25" Width="100" Margin="5,5,0,5" TextChanged="RotationSpeed_TextChanged" />
             </StackPanel>
+            <Button Content="Recenter" Width="90" Click="OnRecenterClicked" HorizontalAlignment="Left" Margin="5"/>
             <StackPanel Orientation="Horizontal">
                 <Button Content="Connect" Width="90" Margin="5" Click="OnConnectClicked"/>
                 <Button Content="Disconnect" Width="90" Margin="5" Click="OnDisconnectClicked" />
